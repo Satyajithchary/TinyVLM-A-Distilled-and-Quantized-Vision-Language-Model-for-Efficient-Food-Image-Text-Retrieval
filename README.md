@@ -1,21 +1,21 @@
 # TinyVLM: A Distilled and Quantized Vision-Language Model for Efficient Food Image-Text Retrieval in TinyML Settings
 
 <p align="center">
-  <a href="https://comsnets.org/aiot_workshop.html"><img src="https://img.shields.io/badge/COMSNETS%202026-AIoT%20Workshop-blue?style=for-the-badge" alt="COMSNETS 2026 AIoT Workshop"/></a>
+  <a href="https://www.comsnets.org/AIoT"><img src="https://img.shields.io/badge/COMSNETS%202026-AIoT%20Workshop-blue?style=for-the-badge" alt="COMSNETS 2026 AIoT Workshop"/></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python" alt="Python"/></a>
   <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-2.2%2B-EE4C2C?style=for-the-badge&logo=pytorch" alt="PyTorch"/></a>
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"/>
 </p>
 
-> **Accepted at COMSNETS 2026 — AIoT Workshop (Paper #1571214556)**
+> **Accepted at COMSNETS 2026 - AIoT Workshop (Paper #1571214556)**
 
 ---
 
 ## Overview
 
-**TinyVLM** is a compact, edge-deployable Vision-Language Model (VLM) designed for fine-grained food image-text retrieval in TinyML / AIoT settings. Built on the modular [nanoVLM](https://github.com/huggingface/nanoVLM) framework, it applies a three-stage compression pipeline — architectural downscaling, knowledge distillation, and dynamic INT8 post-training quantization — to reduce a 847 MB teacher model down to **111 MB**, while retaining **76.8%** retrieval accuracy (vs. 84.6% for the teacher).
+**TinyVLM** is a compact, edge-deployable Vision-Language Model (VLM) designed for fine-grained food image-text retrieval in TinyML / AIoT settings. Built on the modular [nanoVLM](https://github.com/huggingface/nanoVLM) framework, it applies a three-stage compression pipeline - architectural downscaling, knowledge distillation, and dynamic INT8 post-training quantization - to reduce a 847 MB teacher model down to **111 MB**, while retaining **76.8%** retrieval accuracy (vs. 84.6% for the teacher).
 
-> **Task:** Dishcovery: VLM MetaFood Challenge (CVPR 2025) — fine-grained food image-caption retrieval.
+> **Task:** Dishcovery: VLM MetaFood Challenge (CVPR 2025) - fine-grained food image-caption retrieval.
 
 ---
 
@@ -26,13 +26,13 @@
   Extract from the PDF and save as: assets/pipeline.png
 -->
 <p align="center">
-  <img src="assets/pipeline.png" alt="TinyVLM Three-Stage Pipeline" width="850"/>
+  <img src="assets/pipeline.jpg" alt="TinyVLM Three-Stage Pipeline" width="850"/>
 </p>
 
 **Fig. 1:** The three-stage training and compression pipeline.
-1. **Teacher** — A full-size VLM (SigLIP + SmolLM2) is contrastively fine-tuned on 364K food image-caption pairs.
-2. **Student** — A structurally smaller model is trained to mimic the teacher's similarity distribution via KL-divergence distillation, in addition to its own contrastive loss.
-3. **TinyVLM** — The distilled student is converted to INT8 via dynamic post-training quantization, producing the deployable model.
+1. **Teacher** - A full-size VLM (SigLIP + SmolLM2) is contrastively fine-tuned on 364K food image-caption pairs.
+2. **Student** - A structurally smaller model is trained to mimic the teacher's similarity distribution via KL-divergence distillation, in addition to its own contrastive loss.
+3. **TinyVLM** - The distilled student is converted to INT8 via dynamic post-training quantization, producing the deployable model.
 
 ---
 
@@ -82,7 +82,7 @@ where $\alpha = 0.5$ and temperature $T = 2.0$.
 | Teacher VLM (FP32) | 84.6 | 847.17 | 1.00× | 94.7 |
 | Student VLM (from scratch, FP32) | 71.2 | 847.17 | 1.00× | 91.3 |
 | Student VLM (with Distillation, FP32) | 77.6 | 847.17 | 1.00× | 91.3 |
-| **TinyVLM (Distilled + Quantized, INT8) *(Ours)*** | **76.8** | **111.11** | **0.13×** | **84.9** |
+| **TinyVLM (Distilled + Quantized, INT8) *(Proposed)*** | **76.8** | **111.11** | **0.13×** | **84.9** |
 
 > TinyVLM retains **90.8%** of teacher accuracy at only **13.1%** of its storage footprint.
 
@@ -99,7 +99,7 @@ where $\alpha = 0.5$ and temperature $T = 2.0$.
 |:------|:------------:|:----------------:|
 | Teacher VLM (FP32) | 1967.72 | 0.51 |
 | Student VLM (FP32) | 1875.33 | 0.52 |
-| **TinyVLM (INT8, Quantized) *(Ours)*** | **1388.01** | **1.01** |
+| **TinyVLM (INT8, Quantized) *(Proposed)*** | **1388.01** | **1.01** |
 
 > **29.5% latency reduction** and **~2× throughput improvement** over the full-precision teacher on the Jetson.
 
@@ -111,9 +111,9 @@ where $\alpha = 0.5$ and temperature $T = 2.0$.
 |:------|:---------------:|:----------------:|
 | Teacher VLM (FP32) | 847.17 | 1293.54 |
 | Student VLM (FP32) | 847.17 | 1244.53 |
-| **TinyVLM (INT8, Quantized) *(Ours)*** | **111.11** | 2446.38 |
+| **TinyVLM (INT8, Quantized) *(Proposed)*** | **111.11** | 2446.38 |
 
-> Note: Peak memory for the quantized model is higher due to runtime dequantization buffers — a known characteristic of PyTorch dynamic quantization on dual-encoder architectures.
+> Note: Peak memory for the quantized model is higher due to runtime dequantization buffers - a known characteristic of PyTorch dynamic quantization on dual-encoder architectures.
 
 ---
 
@@ -124,7 +124,7 @@ where $\alpha = 0.5$ and temperature $T = 2.0$.
 | **PTQ (INT8)** | **76.8** | **111.11** |
 | QAT (INT8) | 41.6 | 0.86 |
 
-> PTQ substantially outperforms single-epoch QAT for this architecture. The compressed student's small capacity makes it sensitive to quantization noise during training. Extended QAT schedules remain a direction for future work.
+> PTQ substantially outperforms QAT for this architecture. The compressed student's small capacity makes it sensitive to quantization noise during training. Extended QAT schedules remain a direction for future work.
 
 ---
 
@@ -138,7 +138,7 @@ where $\alpha = 0.5$ and temperature $T = 2.0$.
   <img src="assets/qualitative.png" alt="Qualitative Retrieval Results" width="650"/>
 </p>
 
-**Fig. 2:** TinyVLM successfully retrieves fine-grained captions. For a complex dish image, the model identifies specific ingredients and preparation methods such as *"Grilled salmon with a creamy dill sauce and asparagus"* — demonstrating that distillation transfers nuanced cross-modal understanding from the teacher.
+**Fig. 2:** TinyVLM successfully retrieves fine-grained captions. For a complex dish image, the model identifies specific ingredients and preparation methods such as *"Grilled salmon with a creamy dill sauce and asparagus"* - demonstrating that distillation transfers nuanced cross-modal understanding from the teacher.
 
 ---
 
@@ -177,7 +177,7 @@ TinyVLM/
 ├── scripts/
 │   └── evaluate.py            # Multi-model evaluation + Table II / V generation
 │
-├── assets/                    # Figures for README (extracted from paper)
+├── assets/                    # Full Paper & Figures for README
 ├── requirements.txt
 └── .gitignore
 ```
@@ -189,8 +189,8 @@ TinyVLM/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/TinyVLM.git
-cd TinyVLM
+git clone https://github.com/Satyajithchary/TinyVLM-A-Distilled-and-Quantized-Vision-Language-Model-for-Efficient-Food-Image-Text-Retrieval.git
+cd TinyVLM-A-Distilled-and-Quantized-Vision-Language-Model-for-Efficient-Food-Image-Text-Retrieval
 ```
 
 ### 2. Create a virtual environment
@@ -279,7 +279,7 @@ python main.py --skip_teacher --skip_distil ...
 
 ## Dataset
 
-We use the **[Dishcovery: VLM MetaFood Challenge Dataset](https://www.kaggle.com/competitions/dishcovery-vlm-metafood-challenge)** (CVPR 2025):
+We use the **[Dishcovery: VLM MetaFood Challenge Dataset](https://www.kaggle.com/competitions/dishcovery-vlm-mtf-cvpr-2025)** (CVPR 2025):
 
 | Split | Samples |
 |:------|--------:|
@@ -293,7 +293,7 @@ Images are resized to **224 × 224** pixels and captions tokenised to a maximum 
 
 ## Training Setup
 
-All experiments were run on a single **NVIDIA RTX A2000 (12 GB VRAM)**:
+All experiments were run on a single **NVIDIA A6000 Ada (48 GB VRAM)**:
 
 | Hyper-parameter | Value |
 |:----------------|:-----:|
@@ -335,7 +335,7 @@ If you find this work useful, please cite:
                and Nagarajan Ganapathy},
   booktitle = {Proceedings of COMSNETS 2026 -- AIoT Workshop},
   year      = {2026},
-  address   = {Bengaluru, India},
+  doi   = {Forthcoming},
 }
 ```
 
