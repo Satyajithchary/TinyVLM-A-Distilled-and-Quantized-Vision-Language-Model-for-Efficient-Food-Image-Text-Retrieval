@@ -2,8 +2,7 @@
 scripts/evaluate.py
 -------------------
 Evaluate all model variants (Teacher FP32, Student FP32, TinyVLM PTQ-INT8,
-TinyVLM QAT-INT8) on the Dishcovery validation set and generate the results
-tables from the paper (Table II and Table V).
+TinyVLM QAT-INT8) on the Dishcovery validation set.
 
 Usage
 -----
