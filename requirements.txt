@@ -1,4 +1,4 @@
-# TinyVLM — Python Dependencies
+# TinyVLM - Python Dependencies
 # Tested on Python 3.10+ with CUDA 12.1
 
 # Core deep learning
