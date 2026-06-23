@@ -11,9 +11,6 @@ Usage
         --teacher_ckpt outputs/teacher_final.pt \\
         --student_ckpt outputs/student_distilled.pt \\
         --quantized_ckpt outputs/student_ptq_int8.pt
-
-The script prints a summary table that matches Table II / Table III in the
-TinyVLM paper.
 """
 
 import argparse
